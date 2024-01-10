@@ -10,11 +10,11 @@
 </head>
 <body>
         <!-- Sidebar Navigation-->
-        @include('admin.sidebar')
+        @include('student.sidebar')
         <!-- Sidebar Navigation end-->
 
         <!-- Body-->
-        @include('admin.welcome')
+        tiee
         <!-- Body end-->
 </body>
 </html>

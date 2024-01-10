@@ -14,7 +14,7 @@
         <!-- Sidebar Navigation end-->
 
         <!-- Body-->
-        @include('student.body')
+        @include('student.welcome')
         <!-- Body end-->
 </body>
 </html>

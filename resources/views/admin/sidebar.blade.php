@@ -4,6 +4,7 @@
   <ul class="sidebar-list">
     <li><a href="{{url('/reserve')}}"><i class="icon-home"></i>Reserve</a></li>
     <li><a href="#"><i class="icon-table"></i>Browse Venues</a></li>
+    <li><a href="#"><i class="icon-table"></i>Bookings</a></li>
     <li>
       <a href="#example-dropdown" aria-expanded="false" data-toggle="collapse">
         <i class="icon-windows"></i>Events
