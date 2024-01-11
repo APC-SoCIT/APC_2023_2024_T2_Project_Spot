@@ -66,4 +66,15 @@ class DashboardController extends Controller
             }
         }    
     }
+
+    public function myReservations(Request $request)
+    {
+        $reserve = new Reserve;
+
+        $reserve->venue = $request-> venue;
+        $reserve->date = $request-> date;
+        $reserve->time = $request-> time;
+        $reserve->purpose = $request-> purpose;
+
+    }
 }

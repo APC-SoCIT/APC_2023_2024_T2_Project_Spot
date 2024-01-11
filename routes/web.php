@@ -39,3 +39,5 @@ Route::get('/manage', [DashboardController::class, 'manage'])->middleware(['auth
 require __DIR__.'/auth.php';
 
 Route::get('/reserve', [DashboardController::class, 'reserve']);
+
+Route::post('/myReservations', [DashboardController::class, 'myReservations']);
