@@ -38,8 +38,32 @@ class DashboardController extends Controller
 
     }
     
-    public function post()
+    public function bookings()
     {
-        return 
+        return view("admin.bookings");
+    }
+
+    public function manage()
+    {
+        return view("admin.manage");
+    }
+
+    public function reserve()
+    {
+        if(Auth::id())
+        {
+
+            $userType=Auth()->user()->user_type;
+
+            // if its a student, redirect to reserve dashboard
+            if($userType=='student')
+            {
+                return view('student.reserve');
+            }
+            else
+            {
+                return redirect()->back();
+            }
+        }    
     }
 }

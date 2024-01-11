@@ -32,6 +32,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/bookings', [DashboardController::class, 'index'])->middleware(['auth','admin']);
+Route::get('/bookings', [DashboardController::class, 'bookings'])->middleware(['auth','admin']);
+Route::get('/manage', [DashboardController::class, 'manage'])->middleware(['auth','admin']);
+
 
 require __DIR__.'/auth.php';
+
+Route::get('/reserve', [DashboardController::class, 'reserve']);

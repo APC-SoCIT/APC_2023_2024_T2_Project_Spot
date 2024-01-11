@@ -10,7 +10,7 @@
 </head>
 <body>
         <!-- Sidebar Navigation-->
-        @include('student.sidebar')
+        @include('admin.sidebar')
         <!-- Sidebar Navigation end-->
 
         <!-- Body-->
@@ -19,9 +19,7 @@
         <x-app-layout>
             <div class="page-content">
                 <h1 class = "mt-6 text-xl font-semibold text-gray-900 dark:text-white">
-                    Reserve a Venue</h1>
-
-                
+                    Venue Management</h1>
             </div>
         </x-app-layout>  
     </div>
