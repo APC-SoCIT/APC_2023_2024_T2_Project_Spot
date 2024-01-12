@@ -43,3 +43,5 @@ Route::get('/reserve', [DashboardController::class, 'reserve'])->middleware('aut
 Route::post('/user_reserve', [DashboardController::class, 'user_reserve'])->middleware('auth');
 
 Route::get('/myReservations', [DashboardController::class, 'myReservations'])->middleware('auth');
+
+Route::get('/delete_myReservation/{id}', [DashboardController::class, 'delete_myReservation'])->middleware('auth');

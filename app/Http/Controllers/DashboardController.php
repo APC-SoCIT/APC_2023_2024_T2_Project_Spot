@@ -125,5 +125,14 @@ class DashboardController extends Controller
         return view ('student.myReservations', compact('reservation'));
     }
 
+    public function delete_myReservation($id)
+    {
+        $reservation = Reservation::find($id);
+
+        $reservation->delete();
+
+        return redirect()->back()->with('message', 'Reservation successfully cancelled');
+    }
+
 
 }
