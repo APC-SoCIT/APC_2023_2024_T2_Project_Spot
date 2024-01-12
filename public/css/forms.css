@@ -61,5 +61,5 @@ select::-ms-expand { /* Remove arrow in IE11 */
     border-top: 5px solid #000;
     border-left: 5px solid #000;
     border-right: 5px solid transparent;
-    border-bottom: 
+    border-bottom: 5px solid transparent;
 }
