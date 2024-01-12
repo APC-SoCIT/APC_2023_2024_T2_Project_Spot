@@ -8,6 +8,8 @@ use App\Models\User;
 
 use Illuminate\Support\Facades\Auth;
 
+use App\Models\Reservation;
+
 class DashboardController extends Controller
 {
     public function index()
@@ -69,12 +71,26 @@ class DashboardController extends Controller
 
     public function myReservations(Request $request)
     {
-        $reserve = new Reserve;
+        $reservations = new Reservation;
 
-        $reserve->venue = $request-> venue;
-        $reserve->date = $request-> date;
-        $reserve->time = $request-> time;
-        $reserve->purpose = $request-> purpose;
+                    //table column     //name from the <form>
+        $reservations->venue = $request-> venue;
+                  
+        $reservations->date = $request-> date;
 
+        $reservations->time = $request-> time;
+        
+        $reservations->purpose = $request-> purpose;
+
+        $reservations->activity = $request-> activity;
+
+        $reservations->description = $request-> description;
+
+        $reservations->status='pending';
+
+        $reservations->save();
+
+        return redirect()->back();
     }
+
 }

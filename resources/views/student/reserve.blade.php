@@ -41,24 +41,37 @@
     <br>
     <label for="time">Time:</label>
     <input type="time" id="time" name="time" required>
-    <br>
-    <label for="purpose">Purpose:</label>
-    <select id="purpose" name="purpose" required>
-        <option value="">Select Purpose</option>
-        <option value="academic">Workshop/Technical Training</option>
-        <option value="event">Seminar/Webinar/Symposium/Forum</option>
-        <option value="other"> Leadership Training/Team Building</option>
-        <option value="academic">Academic Competitions/Enrichment</option>
-        <option value="event">Culture and Arts</option>
-        <option value="other"> Games and Sports</option>
-        <option value="academic">Religious/Spiritual/Multi-Faith Services</option>
-        <option value="event">Social Events/Parties/Celebrations</option>
-        <option value="other">Marketing/Advertising/Social Media Engagemen</option>
-    </select>
     
     <br>
+    <label for="purpose">Purpose:</label>
+    <select id="purpose" name="purpose" required onchange="showAdditionalDropdown()">
+        <option value="" disabled>Select Purpose</option>
+        <option value="Meetings">Meetings and Conferences</option>
+        <option value="Examinations">Examinations</option>
+        <option value="Events">School Organization</option>
+    </select>
+    
+    <div id="additionalDropdown" style="display: none;">
+        <label for="activity">Nature of Activity:</label>
+        <select id="activity" name="activity">
+            <option value="">Select Event Type</option>
+            <option value="Workshop/Technical Training">Workshop/Technical Training</option>
+            <option value="Seminar/Webinar/Symposium/Forum">Seminar/Webinar/Symposium/Forum</option>
+            <option value="Leadership Training/Team Building"> Leadership Training/Team Building</option>
+            <option value="Academic Competitions/Enrichment">Academic Competitions/Enrichment</option>
+            <option value="Culture and Arts">Culture and Arts</option>
+            <option value="Games and Sports"> Games and Sports</option>
+            <option value="Religious/Spiritual/Multi-Faith Services">Religious/Spiritual/Multi-Faith Services</option>
+            <option value="Social Events/Parties/Celebrations">Social Events/Parties/Celebrations</option>
+            <option value="Marketing/Advertising/Social Media Engagement">Marketing/Advertising/Social Media Engagement</option>
+        </select>
+    </div>
+
+   
+
+    <br>
     <label for="description">Description (Optional):</label>
-    <textarea id="description" name="description" rows="5"></textarea>
+    <textarea id="description" name="description" rows="5" required></textarea>
     <br>
     <button type="submit">Submit Reservation</button>
     </form>
@@ -69,5 +82,26 @@
     </div>
 </div>
         <!-- Body end-->
+
+        <script>
+        function showAdditionalDropdown() 
+        {
+            var purposeDropdown = document.getElementById("purpose");
+            var additionalDropdown = document.getElementById("additionalDropdown");
+
+            // Check if "School Organization Events" is selected
+            if (purposeDropdown.value === "Events") {
+                additionalDropdown.style.display = "block";
+            } else {
+                additionalDropdown.style.display = "none";
+            }
+
+            // Get today's date in the format "YYYY-MM-DD"
+            var today = new Date().toISOString().split('T')[0];
+
+             // Set the min attribute of the date input to today
+            document.getElementById("date").min = today;
+        }
+    </script>
 </body>
 </html>

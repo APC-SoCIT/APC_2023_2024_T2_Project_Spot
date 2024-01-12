@@ -15,10 +15,11 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->string('venue');
-            $table->string('date');
-            $table->string('time');
-            $table->string('status');
+            $table->date('date');
+            $table->time('time');
+            $table->string('status')->nullable();
             $table->string('purpose');
+            $table->string('activity')->nullable();
             $table->string('description');
         });
     }
