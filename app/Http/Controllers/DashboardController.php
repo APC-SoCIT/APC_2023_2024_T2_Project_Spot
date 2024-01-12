@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Auth;
 
 use App\Models\Reservation;
 
+use Alert;
+
 class DashboardController extends Controller
 {
     public function index()
@@ -69,8 +71,17 @@ class DashboardController extends Controller
         }    
     }
 
-    public function myReservations(Request $request)
+    public function user_reserve(Request $request)
     {
+
+        $user=Auth()->user();
+        
+        $userId = $user->id;
+
+        $username = $user->name;
+
+        $userType = $user->user_type;
+
         $reservations = new Reservation;
 
                     //table column     //name from the <form>
@@ -80,17 +91,39 @@ class DashboardController extends Controller
 
         $reservations->time = $request-> time;
         
+        $reservations->status='Pending';    
+
+        $reservations->user_id = $userId;
+
+        $reservations->name = $username;
+
+        $reservations->user_type = $userType;
+
         $reservations->purpose = $request-> purpose;
 
         $reservations->activity = $request-> activity;
 
         $reservations->description = $request-> description;
 
-        $reservations->status='pending';
+        
 
         $reservations->save();
 
+        Alert::success('Success', 'You successfully booked you reservation. Please wait for approval.');
+
         return redirect()->back();
     }
+
+    public function myReservations ()
+    {
+        $user=Auth::user();
+
+        $userId = $user->id;
+
+        $reservation = Reservation::where('user_id', '=', $userId)->get();
+
+        return view ('student.myReservations', compact('reservation'));
+    }
+
 
 }

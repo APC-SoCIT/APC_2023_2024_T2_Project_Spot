@@ -40,6 +40,6 @@ require __DIR__.'/auth.php';
 
 Route::get('/reserve', [DashboardController::class, 'reserve'])->middleware('auth');
 
-Route::post('/myReservations', [DashboardController::class, 'myReservations']);
+Route::post('/user_reserve', [DashboardController::class, 'user_reserve'])->middleware('auth');
 
-
+Route::get('/myReservations', [DashboardController::class, 'myReservations'])->middleware('auth');

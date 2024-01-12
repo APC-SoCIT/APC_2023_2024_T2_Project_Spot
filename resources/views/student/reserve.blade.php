@@ -10,6 +10,9 @@
     <link href = "/css/forms.css" rel="stylesheet">
 </head>
 <body>
+
+        @include('sweetalert::alert')
+
         <!-- Sidebar Navigation-->
         @include('student.sidebar')
         <!-- Sidebar Navigation end-->
@@ -22,7 +25,7 @@
                 <h1 class = "mt-6 text-xl font-semibold text-gray-900 dark:text-white">
                     Reserve a Venue</h1>
 
-                    <form action="{{url('myReservations')}}" method="POST" enctype="multi/form-data">
+                    <form action="{{url('user_reserve')}}" method="POST" enctype="multi/form-data">
 
                     @csrf
     <br>
