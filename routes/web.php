@@ -45,3 +45,10 @@ Route::post('/user_reserve', [DashboardController::class, 'user_reserve'])->midd
 Route::get('/myReservations', [DashboardController::class, 'myReservations'])->middleware('auth');
 
 Route::get('/delete_myReservation/{id}', [DashboardController::class, 'delete_myReservation'])->middleware('auth');
+
+//edit page
+Route::get('/editReservation/{id}', [DashboardController::class, 'editReservation'])->middleware('auth');
+
+Route::post('/updateReservation/{id}', [DashboardController::class, 'updateReservation'])->middleware('auth')->name('update_reservation');
+
+

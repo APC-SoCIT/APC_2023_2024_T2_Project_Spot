@@ -37,7 +37,6 @@
                                 <option value="classroom">Classroom (A)</option>
                                 <option value="classroom">Classroom (B)</option>
                                 <option value="lab">Computer Lab</option>
-                                <option value="other">Other (Please Specify)</option>
                             </select>
                         <br>
                             <label for="date">Date:</label>

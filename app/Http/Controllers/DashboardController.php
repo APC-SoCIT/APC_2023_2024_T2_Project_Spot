@@ -77,35 +77,21 @@ class DashboardController extends Controller
         $user=Auth()->user();
         
         $userId = $user->id;
-
         $username = $user->name;
-
         $userType = $user->user_type;
-
         $reservations = new Reservation;
 
                     //table column     //name from the <form>
-        $reservations->venue = $request-> venue;
-                  
+        $reservations->venue = $request-> venue;         
         $reservations->date = $request-> date;
-
-        $reservations->time = $request-> time;
-        
+        $reservations->time = $request-> time;       
         $reservations->status='Pending';    
-
         $reservations->user_id = $userId;
-
         $reservations->name = $username;
-
         $reservations->user_type = $userType;
-
         $reservations->purpose = $request-> purpose;
-
         $reservations->activity = $request-> activity;
-
         $reservations->description = $request-> description;
-
-        
 
         $reservations->save();
 
@@ -135,4 +121,28 @@ class DashboardController extends Controller
     }
 
 
+    public function editReservation($id)
+    {
+        $reservation = Reservation::find($id);
+
+        return view('student.editReservation', compact('reservation'));
+    }
+
+    public function updateReservation(Request $request, $id)
+    {
+        $reservation = Reservation::find($id);
+
+        // Update reservation details based on the form data
+        $reservation->venue = $request->venue;
+        $reservation->date = $request->date;
+        $reservation->time = $request->time;
+        $reservation->purpose = $request->purpose;
+        $reservation->activity = $request->activity;
+        $reservation->description = $request->description;
+
+        // Save the updated reservation
+        $reservation->save();
+
+        return redirect()->back(); // Redirect
+    }
 }
