@@ -8,6 +8,12 @@ use App\Models\User;
 
 use Illuminate\Support\Facades\Auth;
 
+use Illuminate\Support\Facades\DB;
+
+use App\Models\Reservation;
+
+use Alert;
+
 class DashboardController extends Controller
 {
     public function index()
@@ -37,16 +43,6 @@ class DashboardController extends Controller
         }
 
     }
-    
-    public function bookings()
-    {
-        return view("admin.bookings");
-    }
-
-    public function manage()
-    {
-        return view("admin.manage");
-    }
 
     public function reserve()
     {
@@ -66,4 +62,87 @@ class DashboardController extends Controller
             }
         }    
     }
+
+    public function user_reserve(Request $request)
+    {
+
+        $user=Auth()->user();
+        
+        $userId = $user->id;
+        $username = $user->name;
+        $userType = $user->user_type;
+        $reservations = new Reservation;
+
+
+                    //table column     //name from the <form>
+        $reservations->venue_id = $request-> venue_id;         
+        $reservations->date = $request-> date;
+        $reservations->time = $request-> time;       
+        $reservations->status='Pending';    
+        $reservations->user_id = $userId;
+        $reservations->name = $username;
+        $reservations->user_type = $userType;
+        $reservations->purpose = $request-> purpose;
+        $reservations->activity = $request-> activity;
+        $reservations->description = $request-> description;
+
+        $reservations->save();
+
+        Alert::success('Success', 'You successfully booked you reservation. Please wait for approval.');
+
+        return redirect()->back();
+    }
+
+    public function showForm() {
+        $venues = DB::table('venues')->pluck('venue_code', 'id');
+        return view('student.reserve', compact('venues'));
+    }
+    
+
+    public function myReservations ()
+    {
+        $user=Auth::user();
+
+        $userId = $user->id;
+
+        $reservation = Reservation::where('user_id', '=', $userId)->get();
+
+        return view ('student.my-reservations', compact('reservation'));
+    }
+
+    public function cancelReservation($id)
+    {
+        $reservation = Reservation::findOrFail($id);
+        $reservation->status = 'Cancelled';
+        $reservation->save();
+
+        return redirect()->back()->with('message', 'Reservation successfully cancelled');
+    }
+
+
+    public function editReservation($id)
+    {
+        $reservation = Reservation::find($id);
+
+        return view('student.edit-reservation', compact('reservation'));
+    }
+
+    public function updateReservation(Request $request, $id)
+    {
+        $reservation = Reservation::find($id);
+
+        // Update reservation details based on the form data
+        $reservation->venue_id = $request->venue_id;
+        $reservation->date = $request->date;
+        $reservation->time = $request->time;
+        $reservation->purpose = $request->purpose;
+        $reservation->activity = $request->activity;
+        $reservation->description = $request->description;
+
+        // Save the updated reservation
+        $reservation->save();
+
+        return redirect()->back(); // Redirect
+    }
+
 }

@@ -5,6 +5,7 @@
     <li><a href="{{url('/home')}}"><i class="icon-table"></i>Home</a></li>
     <li><a href="{{url('/reserve')}}"><i class="icon-home"></i>Reserve</a></li>
     <li><a href="{{url('/browse')}}"><i class="icon-table"></i>Browse Venues</a></li>
+    <li><a href="{{url('/my-reservations')}}"><i class="icon-home"></i>My Reservations</a></li>
     <li>
       <a href="#dropdown" aria-expanded="false" data-toggle="collapse">
         <i class="icon-windows"></i>Events

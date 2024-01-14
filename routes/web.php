@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\VenuesController;
 
+use App\Http\Controllers\AdminController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -33,7 +35,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/bookings', [DashboardController::class, 'bookings'])->middleware(['auth','admin']);
+// Route::get('/bookings', [DashboardController::class, 'bookings'])->middleware(['auth','admin']);
 Route::get('/manage', [DashboardController::class, 'manage'])->middleware(['auth','admin']);
 
 
@@ -42,6 +44,7 @@ Route::get('/manage', [DashboardController::class, 'manage'])->middleware(['auth
 
 require __DIR__.'/auth.php';
 
+<<<<<<< HEAD
 
 
 Route::get('/reserve', [DashboardController::class, 'reserve']);
@@ -53,4 +56,26 @@ Route::resource('/venues', 'App\Http\Controllers\VenuesController::store()');
 
 
 Route::get('venues', [VenuesController::class,'index'])->name('admin.manage');
+=======
+Route::get('/reserve', [DashboardController::class, 'reserve'])->middleware('auth',);
+
+Route::post('/user_reserve', [DashboardController::class, 'user_reserve'])->middleware('auth');
+
+Route::get('/my-reservations', [DashboardController::class, 'myReservations'])->middleware('auth');
+
+Route::get('/cancel-reservation/{id}', [DashboardController::class, 'cancelReservation'])->middleware('auth');
+
+//edit page
+Route::get('/edit-reservation/{id}', [DashboardController::class, 'editReservation'])->middleware('auth');
+
+Route::post('/update-reservation/{id}', [DashboardController::class, 'updateReservation'])->middleware('auth')->name('update_reservation');
+
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('/bookings', [AdminController::class, 'showBookings'])->name('admin.bookings');
+    Route::post('/admin/approve-reservation/{id}', [AdminController::class, 'approveReservation'])->name('admin.approveReservation');
+    Route::post('/admin/reject-reservation/{id}', [AdminController::class, 'rejectReservation'])->name('admin.rejectReservation');
+});
+
+Route::get('/reserve', [DashboardController::class, 'showForm'])->middleware('auth');
+>>>>>>> 7ccbfbc7aedbf603b51be444d74e5bfef5e92690
 
