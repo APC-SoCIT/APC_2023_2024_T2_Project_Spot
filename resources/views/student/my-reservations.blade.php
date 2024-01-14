@@ -43,7 +43,7 @@
     </div>
 @endif
 
-<!-- The rest of your myReservations.blade.php content -->
+<!-- The rest of my-reservations.blade.php content -->
 
                 <h1 class = "mt-6 text-xl font-semibold text-gray-900 dark:text-white">
                     Reservations History</h1>
@@ -73,7 +73,7 @@
                                     <td>{{ $reservation->activity }}</td>
                                     <td>{{ $reservation->description }}</td>
                                     <td>
-                                        <a href="{{url('editReservation', $reservation->id)}}">Edit</a>
+                                        <a href="{{url('edit-reservation', $reservation->id)}}">Edit</a>
                                         |
                                         <a href="{{url('delete_myReservation', $reservation->id)}}" onclick="confirmation(event)">Cancel</a>
                                     </td>

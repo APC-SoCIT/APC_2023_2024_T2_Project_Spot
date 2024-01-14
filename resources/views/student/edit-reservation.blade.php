@@ -21,7 +21,7 @@
                 <h1 class = "mt-6 text-xl font-semibold text-gray-900 dark:text-white">
                     Edit Reservation Details</h1>
 
-                    <form action="{{ url('updateReservation', $reservation->id) }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ url('update-reservation', $reservation->id) }}" method="POST" enctype="multipart/form-data">
                     
     @csrf
     <!-- Add other form fields here if needed -->

@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\DashboardController;
 
+use App\Http\Controllers\AdminController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,23 +34,28 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/bookings', [DashboardController::class, 'bookings'])->middleware(['auth','admin']);
+// Route::get('/bookings', [DashboardController::class, 'bookings'])->middleware(['auth','admin']);
 Route::get('/manage', [DashboardController::class, 'manage'])->middleware(['auth','admin']);
 
 
 require __DIR__.'/auth.php';
 
-Route::get('/reserve', [DashboardController::class, 'reserve'])->middleware('auth');
+Route::get('/reserve', [DashboardController::class, 'reserve'])->middleware('auth',);
 
 Route::post('/user_reserve', [DashboardController::class, 'user_reserve'])->middleware('auth');
 
-Route::get('/myReservations', [DashboardController::class, 'myReservations'])->middleware('auth');
+Route::get('/my-reservations', [DashboardController::class, 'myReservations'])->middleware('auth');
 
 Route::get('/delete_myReservation/{id}', [DashboardController::class, 'delete_myReservation'])->middleware('auth');
 
 //edit page
-Route::get('/editReservation/{id}', [DashboardController::class, 'editReservation'])->middleware('auth');
+Route::get('/edit-reservation/{id}', [DashboardController::class, 'editReservation'])->middleware('auth');
 
-Route::post('/updateReservation/{id}', [DashboardController::class, 'updateReservation'])->middleware('auth')->name('update_reservation');
+Route::post('/update-reservation/{id}', [DashboardController::class, 'updateReservation'])->middleware('auth')->name('update_reservation');
 
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('/bookings', [AdminController::class, 'showBookings'])->name('admin.bookings');
+    Route::post('/admin/approve-reservation/{id}', [AdminController::class, 'approveReservation'])->name('admin.approveReservation');
+    Route::post('/admin/reject-reservation/{id}', [AdminController::class, 'rejectReservation'])->name('admin.rejectReservation');
+});
 

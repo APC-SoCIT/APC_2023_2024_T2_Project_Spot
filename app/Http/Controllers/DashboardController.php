@@ -41,16 +41,6 @@ class DashboardController extends Controller
         }
 
     }
-    
-    public function bookings()
-    {
-        return view("admin.bookings");
-    }
-
-    public function manage()
-    {
-        return view("admin.manage");
-    }
 
     public function reserve()
     {
@@ -108,7 +98,7 @@ class DashboardController extends Controller
 
         $reservation = Reservation::where('user_id', '=', $userId)->get();
 
-        return view ('student.myReservations', compact('reservation'));
+        return view ('student.my-reservations', compact('reservation'));
     }
 
     public function delete_myReservation($id)
@@ -125,7 +115,7 @@ class DashboardController extends Controller
     {
         $reservation = Reservation::find($id);
 
-        return view('student.editReservation', compact('reservation'));
+        return view('student.edit-reservation', compact('reservation'));
     }
 
     public function updateReservation(Request $request, $id)
@@ -145,4 +135,7 @@ class DashboardController extends Controller
 
         return redirect()->back(); // Redirect
     }
+
+        
+
 }
