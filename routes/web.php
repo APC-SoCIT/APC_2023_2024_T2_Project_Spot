@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\VenuesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,7 +22,7 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('student.dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/home', [DashboardController::class, 'index']); //from routeserviceprovider call it will call the index in the dashboard controller, 
@@ -36,6 +37,20 @@ Route::get('/bookings', [DashboardController::class, 'bookings'])->middleware(['
 Route::get('/manage', [DashboardController::class, 'manage'])->middleware(['auth','admin']);
 
 
+
+//
+
 require __DIR__.'/auth.php';
 
+
+
 Route::get('/reserve', [DashboardController::class, 'reserve']);
+
+
+
+Route::get('venues', [VenuesController::class, 'index'])->name('venues.index');
+Route::resource('/venues', 'App\Http\Controllers\VenuesController::store()');
+
+
+Route::get('venues', [VenuesController::class,'index'])->name('admin.manage');
+

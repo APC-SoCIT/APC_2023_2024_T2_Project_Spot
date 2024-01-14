@@ -6,7 +6,7 @@
     <title>Document</title>
 
     <!-- styles -->
-    <link href = "/css/custom.css" rel="stylesheet">
+    <link href = "css/custom.css" rel="stylesheet">
 </head>
 <body>
         <!-- Sidebar Navigation-->
@@ -18,8 +18,8 @@
     <div class="logout-container">
         <x-app-layout>
             <div class="page-content">
-                <h1 class = "mt-6 text-xl font-semibold text-gray-900 dark:text-white">
-                    Reservations List</h1>
+                <h1 class = "mt-6 text-xl font-semibold text-gray-900 dark:text-black">
+                    Reservations List</h1> 
             </div>
         </x-app-layout>  
     </div>
