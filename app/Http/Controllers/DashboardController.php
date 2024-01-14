@@ -8,6 +8,8 @@ use App\Models\User;
 
 use Illuminate\Support\Facades\Auth;
 
+use Illuminate\Support\Facades\DB;
+
 use App\Models\Reservation;
 
 use Alert;
@@ -71,8 +73,9 @@ class DashboardController extends Controller
         $userType = $user->user_type;
         $reservations = new Reservation;
 
+
                     //table column     //name from the <form>
-        $reservations->venue = $request-> venue;         
+        $reservations->venue_id = $request-> venue_id;         
         $reservations->date = $request-> date;
         $reservations->time = $request-> time;       
         $reservations->status='Pending';    
@@ -90,6 +93,12 @@ class DashboardController extends Controller
         return redirect()->back();
     }
 
+    public function showForm() {
+        $venues = DB::table('venues')->pluck('venue_code', 'id');
+        return view('student.reserve', compact('venues'));
+    }
+    
+
     public function myReservations ()
     {
         $user=Auth::user();
@@ -101,11 +110,11 @@ class DashboardController extends Controller
         return view ('student.my-reservations', compact('reservation'));
     }
 
-    public function delete_myReservation($id)
+    public function cancelReservation($id)
     {
-        $reservation = Reservation::find($id);
-
-        $reservation->delete();
+        $reservation = Reservation::findOrFail($id);
+        $reservation->status = 'Cancelled';
+        $reservation->save();
 
         return redirect()->back()->with('message', 'Reservation successfully cancelled');
     }
@@ -123,7 +132,7 @@ class DashboardController extends Controller
         $reservation = Reservation::find($id);
 
         // Update reservation details based on the form data
-        $reservation->venue = $request->venue;
+        $reservation->venue_id = $request->venue_id;
         $reservation->date = $request->date;
         $reservation->time = $request->time;
         $reservation->purpose = $request->purpose;
@@ -135,7 +144,5 @@ class DashboardController extends Controller
 
         return redirect()->back(); // Redirect
     }
-
-        
 
 }

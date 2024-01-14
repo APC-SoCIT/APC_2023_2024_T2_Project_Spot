@@ -46,7 +46,7 @@ Route::post('/user_reserve', [DashboardController::class, 'user_reserve'])->midd
 
 Route::get('/my-reservations', [DashboardController::class, 'myReservations'])->middleware('auth');
 
-Route::get('/delete_myReservation/{id}', [DashboardController::class, 'delete_myReservation'])->middleware('auth');
+Route::get('/cancel-reservation/{id}', [DashboardController::class, 'cancelReservation'])->middleware('auth');
 
 //edit page
 Route::get('/edit-reservation/{id}', [DashboardController::class, 'editReservation'])->middleware('auth');
@@ -58,4 +58,6 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::post('/admin/approve-reservation/{id}', [AdminController::class, 'approveReservation'])->name('admin.approveReservation');
     Route::post('/admin/reject-reservation/{id}', [AdminController::class, 'rejectReservation'])->name('admin.rejectReservation');
 });
+
+Route::get('/reserve', [DashboardController::class, 'showForm'])->middleware('auth');
 

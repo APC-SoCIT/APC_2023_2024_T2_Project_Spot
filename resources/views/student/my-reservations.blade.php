@@ -65,7 +65,7 @@
                         <tbody>
                             @foreach($reservation as $reservation)
                                 <tr>
-                                    <td>{{ $reservation->venue }}</td>
+                                    <td>{{ $reservation->venue_id }}</td>
                                     <td>{{ $reservation->date }}</td>
                                     <td>{{ $reservation->time }}</td>
                                     <td>{{ $reservation->status }}</td>
@@ -75,7 +75,7 @@
                                     <td>
                                         <a href="{{url('edit-reservation', $reservation->id)}}">Edit</a>
                                         |
-                                        <a href="{{url('delete_myReservation', $reservation->id)}}" onclick="confirmation(event)">Cancel</a>
+                                        <a href="{{url('cancel-reservation', $reservation->id)}}" onclick="confirmation(event)">Cancel</a>
                                     </td>
                                 </tr>
                             @endforeach

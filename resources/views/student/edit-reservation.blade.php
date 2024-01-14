@@ -26,13 +26,13 @@
     @csrf
     <!-- Add other form fields here if needed -->
 
-    <label for="venue">Venue:</label>
-    <select id="venue" name="venue" required>
-        <option value="auditorium" {{ $reservation->venue == 'auditorium' ? 'selected' : '' }}>Auditorium</option>
-        <option value="classroom_a" {{ $reservation->venue == 'classroom_a' ? 'selected' : '' }}>Classroom (A)</option>
-        <option value="classroom_b" {{ $reservation->venue == 'classroom_b' ? 'selected' : '' }}>Classroom (B)</option>
-        <option value="lab" {{ $reservation->venue == 'lab' ? 'selected' : '' }}>Computer Lab</option>
-        <option value="other" {{ $reservation->venue == 'other' ? 'selected' : '' }}>Other (Please Specify)</option>
+    <label for="venue_id">Venue:</label>
+    <select id="venue_id" name="venue_id" required>
+        <option value="auditorium" {{ $reservation->venue_id == 'auditorium' ? 'selected' : '' }}>Auditorium</option>
+        <option value="classroom_a" {{ $reservation->venue_id == 'classroom_a' ? 'selected' : '' }}>Classroom (A)</option>
+        <option value="classroom_b" {{ $reservation->venue_id == 'classroom_b' ? 'selected' : '' }}>Classroom (B)</option>
+        <option value="lab" {{ $reservation->venue_id == 'lab' ? 'selected' : '' }}>Computer Lab</option>
+        <option value="other" {{ $reservation->venue_id == 'other' ? 'selected' : '' }}>Other (Please Specify)</option>
     </select>
 
     <label for="date">Date:</label>
@@ -55,6 +55,14 @@
             <option value="Workshop/Technical Training" {{ $reservation->activity == 'Workshop/Technical Training' ? 'selected' : '' }}>Workshop/Technical Training</option>
             <option value="Seminar/Webinar/Symposium/Forum" {{ $reservation->activity == 'Seminar/Webinar/Symposium/Forum' ? 'selected' : '' }}>Seminar/Webinar/Symposium/Forum</option>
             <option value="Leadership Training/Team Building" {{ $reservation->activity == 'Leadership Training/Team Building' ? 'selected' : '' }}>Leadership Training/Team Building</option>
+            <option value="Academic Competitions/Enrichment" {{ $reservation->activity == 'Academic Competitions/Enrichment' ? 'selected' : '' }}>Academic Competitions/Enrichment</option>
+            <option value="Culture and Arts" {{ $reservation->activity == 'Culture and Arts' ? 'selected' : '' }}> Culture and Arts</option>
+            <option value="Games and Sports" {{ $reservation->activity == 'Games and Sports' ? 'selected' : '' }}>Games and Sports</option>
+            <option value="Religious/Spiritual/Multi-Faith Services" {{ $reservation->activity == 'Religious/Spiritual/Multi-Faith Services' ? 'selected' : '' }}>Religious/Spiritual/Multi-Faith Services</option>
+            <option value="  Community Extension Involvements" {{ $reservation->activity == 'Community Extension Involvements' ? 'selected' : '' }}>  Community Extension Involvements</option>
+            <option value="Social Events/Parties/Celebrations" {{ $reservation->activity == 'Social Events/Parties/Celebrations' ? 'selected' : '' }}> Social Events/Parties/Celebrations</option>
+            <option value="Marketing/Advertising/Social Media Engagement" {{ $reservation->activity == 'Marketing/Advertising/Social Media Engagement' ? 'selected' : '' }}>Marketing/Advertising/Social Media Engagement</option>
+            <option value="  Industry Linkages" {{ $reservation->activity == 'Industry Linkages' ? 'selected' : '' }}>  Industry Linkages</option>
             <!-- Add other options based on your requirement -->
         </select>
     </div>

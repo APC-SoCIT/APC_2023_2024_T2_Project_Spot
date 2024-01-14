@@ -27,13 +27,11 @@
                     <form action="{{url('user_reserve')}}" method="POST" enctype="multi/form-data">
                         @csrf
 
-                        <label for="venue">Venue:</label>
-                        <select id="venue" name="venue" required>
-                            <option value="">Select Venue</option>
-                            <option value="auditorium">Auditorium</option>
-                            <option value="classroom">Classroom (A)</option>
-                            <option value="classroom">Classroom (B)</option>
-                            <option value="lab">Computer Lab</option>
+                        <label for="venue_id">Venue:</label>
+                        <select id="venue_id" name="venue_id" required>
+                        @foreach($venues as $id => $venue_code)
+                            <option value="{{ $id }}">{{ $venue_code }}</option>
+                        @endforeach
                         </select>
 
                         <label for="date">Date:</label>
@@ -55,6 +53,16 @@
                             <select id="activity" name="activity">
                                 <option value="">Select Event Type</option>
                                 <option value="Workshop/Technical Training">Workshop/Technical Training</option>
+                                <option value="Seminar/Webinar/Symposium/Forum">Seminar/Webinar/Symposium/Forum</option>
+                                <option value="Leadership Training/Team Building">Leadership Training/Team Building</option>
+                                <option value="Academic Competitions/Enrichment">Academic Competitions/Enrichment</option>
+                                <option value="Culture and Arts"> Culture and Arts</option>
+                                <option value="Games and Sports">Games and Sports</option>
+                                <option value="Religious/Spiritual/Multi-Faith Services">Religious/Spiritual/Multi-Faith Services</option>
+                                <option value="  Community Extension Involvements">  Community Extension Involvements</option>
+                                <option value="Social Events/Parties/Celebrations">Social Events/Parties/Celebrations</option>
+                                <option value="Marketing/Advertising/Social Media Engagement">Marketing/Advertising/Social Media Engagement</option>
+                                <option value="  Industry Linkages">  Industry Linkages</option>
                                 <!-- Add more options as needed -->
                             </select>
                         </div>        
